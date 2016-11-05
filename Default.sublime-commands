@@ -1,6 +1,9 @@
-[{	"caption": "Tweak Colorcode to current color scheme",
-	"command": "colorshemeemodifier"
-},{
-	"caption": "Toggle Colorcode on this view",
-	"command": "colorcodertoggler"
-}]
+[
+    {	"caption": "Tweak 128T Log Viewer to current color scheme",
+	   "command": "colorshemeemodifier"
+    },
+    {
+	   "caption": "Toggle 128T Log Viewer on this view",
+	   "command": "colorcodertoggler"
+    }
+]
