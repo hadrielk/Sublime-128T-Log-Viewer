@@ -1,35 +1,66 @@
-[{	"id": "view",
-	"children":
-	[{	"id": "syntax"
-	},{
-		"command": "colorcodertoggler"
-	}]
-},{	"id": "tools",
-	"children":
-	[{	"id": "packages",
+[
+	{
+		"id": "view",
 		"children":
-		[{	"caption": "Colorcoder",
-			"id": "Colorcoder-com",
-			"children":
-			[{	"caption": "Tweak Colorcode on current color scheme",
-				"command": "colorshemeemodifier"
-			}]
-		}]
-	}]
-},{	"id": "preferences",
-	"children":
-	[{	"id": "package-settings",
+		[
+			{
+				"id": "syntax"
+			},
+			{
+				"command": "colorcodertoggler"
+			}
+		]
+	},
+	{
+		"id": "tools",
 		"children":
-		[{	"id": "Colorcoder-set",
-			"caption": "Colorcoder",
-			"children":
-			[{	"caption": "Settings – Default",
-				"command": "open_file",
-				"args": {"file": "${packages}/Colorcoder/colorcoder.sublime-settings"}
-			},{	"caption": "Settings – User",
-				"command": "open_file",
-				"args": {"file": "${packages}/User/colorcoder.sublime-settings"}
-			}]
-		}]
-	}]
-}]
+		[
+			{
+				"id": "packages",
+				"children":
+				[
+					{
+						"caption": "128T Log Viewer",
+						"id": "128T-Log-Viewer-com",
+						"children":
+						[
+							{
+								"caption": "Tweak 128T Log Viewer on current color scheme",
+								"command": "colorshemeemodifier"
+							}
+						]
+					}
+				]
+			}
+		]
+	},
+	{
+		"id": "preferences",
+		"children":
+		[
+			{
+				"id": "package-settings",
+				"children":
+				[
+					{
+						"id": "128T-Log-Viewer-set",
+						"caption": "128T Log Viewer",
+						"children":
+						[
+							{
+								"caption": "Settings – Default",
+								"command": "open_file",
+								"args": {"file": "${packages}/128T Log Viewer/128t_log_viewer.sublime-settings"}
+							},
+							{
+								"caption": "Settings – User",
+								"command": "open_file",
+								"args": {"file": "${packages}/User/128t_log_viewer.sublime-settings"}
+							}
+						]
+					}
+				]
+			}
+		]
+	}
+]

@@ -47,7 +47,7 @@ scopes = []
 
 use_textcommand = True
 
-class colorcoder(sublime_plugin.EventListener):
+class t128_log_viewer(sublime_plugin.EventListener):
 
     def on_new(self,view):
         view.settings().set('colorcode',True)
@@ -57,7 +57,7 @@ class colorcoder(sublime_plugin.EventListener):
 
     def on_load(self,view):
         view.settings().set('colorcode',True)
-        set = sublime.load_settings("colorcoder.sublime-settings")
+        set = sublime.load_settings("128t_log_viewer.sublime-settings")
         if view.file_name():
             filename = os.path.split(view.file_name())[1]
             dotp = filename.rfind('.')
@@ -68,7 +68,7 @@ class colorcoder(sublime_plugin.EventListener):
 
         if view.size() > set.get('max_size') and not view.settings().get('forcecolorcode',False):
             sublime.status_message("File is too big, disabling colorcoding as it might hurt perfromance")
-            colorcoder.remove_colorcode(view)
+            t128_log_viewer.remove_colorcode(view)
             view.settings().set('colorcode',False)
             return
 
@@ -93,17 +93,17 @@ class colorcoder(sublime_plugin.EventListener):
             if use_textcommand:
                 view.run_command("colorcode")
             else:
-                colorcoder.colorcode(view)
+                t128_log_viewer.colorcode(view)
 
     @staticmethod
     def update_scopes():
         global scopes
-        scopes = sublime.load_settings("colorcoder.sublime-settings").get('scopes')
+        scopes = sublime.load_settings("128t_log_viewer.sublime-settings").get('scopes')
 
     @staticmethod
     def update_use_textcommand():
         global use_textcommand
-        use_textcommand = sublime.load_settings("colorcoder.sublime-settings").get('use_fast_highlighting_but_undo_typing_letterwise')
+        use_textcommand = sublime.load_settings("128t_log_viewer.sublime-settings").get('use_fast_highlighting_but_undo_typing_letterwise')
 
     def on_post_text_command(self, view, cmd, args):
         if cmd=="set_file_type":
@@ -133,7 +133,7 @@ class colorcoder(sublime_plugin.EventListener):
 
 class colorcode(sublime_plugin.TextCommand):
     def run(self, edit):
-        colorcoder.colorcode(self.view)
+        t128_log_viewer.colorcode(self.view)
 
 
 class colorcodertoggler(sublime_plugin.ApplicationCommand):
@@ -144,9 +144,9 @@ class colorcodertoggler(sublime_plugin.ApplicationCommand):
         view.settings().set('forcecolorcode',False)
 
         if cc:
-            colorcoder.remove_colorcode(view)
+            t128_log_viewer.remove_colorcode(view)
         else:
-            if view.size() > sublime.load_settings("colorcoder.sublime-settings").get('max_size'):
+            if view.size() > sublime.load_settings("128t_log_viewer.sublime-settings").get('max_size'):
                 view.settings().set('forcecolorcode',True)
             view.run_command("colorcode")
 
@@ -155,7 +155,7 @@ class colorcodertoggler(sublime_plugin.ApplicationCommand):
         return viewset.get('colorcode',False) or viewset.get('forcecolorcode',False)
 
     def description(self):
-        if sublime.active_window().active_view().size() > sublime.load_settings("colorcoder.sublime-settings").get('max_size'):
+        if sublime.active_window().active_view().size() > sublime.load_settings("128t_log_viewer.sublime-settings").get('max_size'):
             return "Colorcoding may hurt performance, File is large"
         else:
             return "Colorcode this view"
@@ -164,28 +164,28 @@ modification_running = False
 
 class colorshemeemodifier(sublime_plugin.ApplicationCommand):
     def run(self):
-        sublime.active_window().show_input_panel("Lightness and Saturation","%s %s"%(sublime.load_settings("colorcoder.sublime-settings").get('lightness'),sublime.load_settings("colorcoder.sublime-settings").get('saturation')),self.panel_callback,None,None)
+        sublime.active_window().show_input_panel("Lightness and Saturation","%s %s"%(sublime.load_settings("128t_log_viewer.sublime-settings").get('lightness'),sublime.load_settings("t128_log_viewer.sublime-settings").get('saturation')),self.panel_callback,None,None)
 
     def panel_callback(self, text):
         (l,s)= map(float,text.split(' '))
-        sublime.load_settings("colorcoder.sublime-settings").set('lightness',l)
-        sublime.load_settings("colorcoder.sublime-settings").set('saturation',s)
-        sublime.save_settings("colorcoder.sublime-settings")
+        sublime.load_settings("128t_log_viewer.sublime-settings").set('lightness',l)
+        sublime.load_settings("128t_log_viewer.sublime-settings").set('saturation',s)
+        sublime.save_settings("128t_log_viewer.sublime-settings")
         colorshemeemodifier.modify_color_scheme(l,s,True)
 
     @staticmethod
     def maybefixscheme():
-        set = sublime.load_settings("colorcoder.sublime-settings")
+        set = sublime.load_settings("128t_log_viewer.sublime-settings")
         if set.get('auto_apply_on_scheme_change'):
-            if sublime.load_settings("Preferences.sublime-settings").get('color_scheme').find('/Colorcoder/') == -1:
+            if sublime.load_settings("Preferences.sublime-settings").get('color_scheme').find('/128T-Log-Viewer/') == -1:
                 colorshemeemodifier.modify_color_scheme(set.get('lightness'),set.get('saturation'))
 
     @staticmethod
     def modify_color_scheme(l,s,read_original = False):
         read_original = read_original and sublime.load_settings("Preferences.sublime-settings").has("original_color_scheme")
-        if read_original and sublime.load_settings("Preferences.sublime-settings").get('color_scheme').find('/Colorcoder/') == -1:
+        if read_original and sublime.load_settings("Preferences.sublime-settings").get('color_scheme').find('/128T-Log-Viewer/') == -1:
             read_original = False
-        if read_original and sublime.load_settings("Preferences.sublime-settings").get('original_color_scheme').find('/Colorcoder/') != -1:
+        if read_original and sublime.load_settings("Preferences.sublime-settings").get('original_color_scheme').find('/128T-Log-Viewer/') != -1:
             print("original theme already colorcoded, abort")
             return
         global modification_running
@@ -214,7 +214,7 @@ class colorshemeemodifier(sublime_plugin.ApplicationCommand):
                     tokenclr =  "#%02x%02x%02x" % (r,g,b)
                     break
 
-            cs["name"] = cs["name"] + " (Colorcoded)"
+            cs["name"] = cs["name"] + " (128T-Log-Viewer)"
 
             for x in range(0,256):
                 cs["settings"].append(dict(
@@ -225,7 +225,7 @@ class colorshemeemodifier(sublime_plugin.ApplicationCommand):
                     )
                 ))
 
-            newname = "/Colorcoder/%s (Colorcoded).tmTheme" % re.search("/([^/]+).tmTheme$", name).group(1)
+            newname = "/128T-Log-Viewer/%s (128T-Log-Viewer).tmTheme" % re.search("/([^/]+).tmTheme$", name).group(1)
 
             plistlib.writePlist(cs,"%s%s" % (sublime.packages_path(),newname))
 
@@ -233,7 +233,7 @@ class colorshemeemodifier(sublime_plugin.ApplicationCommand):
             sublime.load_settings("Preferences.sublime-settings").set("color_scheme","Packages%s" % newname)
             sublime.save_settings("Preferences.sublime-settings")
         except Exception as e:
-            sublime.error_message("Colorcoder was not able to parse the colorscheme\nCheck the console for the actual error message.")
+            sublime.error_message("128T-Log-Viewer was not able to parse the colorscheme\nCheck the console for the actual error message.")
             sublime.active_window().run_command("show_panel", {"panel": "console", "toggle": True})
             print(e)
         finally:
@@ -248,15 +248,15 @@ class colorcoderInspectScope(sublime_plugin.ApplicationCommand):
 
 def plugin_loaded():
     sublime.load_settings("Preferences.sublime-settings").add_on_change('color_scheme',colorshemeemodifier.maybefixscheme)
-    sublime.load_settings("colorcoder.sublime-settings").add_on_change('scopes',colorcoder.update_scopes)
-    sublime.load_settings("colorcoder.sublime-settings").add_on_change('use_textcommand',colorcoder.update_use_textcommand)
-    colorcoder.update_scopes()
-    colorcoder.update_use_textcommand()
+    sublime.load_settings("128t_log_viewer.sublime-settings").add_on_change('scopes',t128_log_viewer.update_scopes)
+    sublime.load_settings("128t_log_viewer.sublime-settings").add_on_change('use_textcommand',t128_log_viewer.update_use_textcommand)
+    t128_log_viewer.update_scopes()
+    t128_log_viewer.update_use_textcommand()
     pp = sublime.packages_path()
-    if not os.path.exists(pp+"/Colorcoder"):
-        os.makedirs(pp+"/Colorcoder")
+    if not os.path.exists(pp+"/128T-Log-Viewer"):
+        os.makedirs(pp+"/128T-Log-Viewer")
 
-    firstrunfile = pp+"/Colorcoder/firstrun"
+    firstrunfile = pp+"/128T-Log-Viewer/firstrun"
     if not os.path.exists(firstrunfile):
         colorshemeemodifier.maybefixscheme()
         open(firstrunfile, 'a').close()
