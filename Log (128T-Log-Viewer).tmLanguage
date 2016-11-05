@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>fileTypes</key>
+    <array>
+        <string>log</string>
+    </array>
+    <key>firstLineMatch</key>
+    <string>^[a-zA-Z]{3} [0-9]{1,2} [0-2][0-9]:[0-6][0-9]:[0-6][0-9]\.[0-9]+ \[[A-Z]{2,5} *(?:\|.{4})?\] (TRACE|DEBUG|INFO|WARN|ERROR|FATAL) </string>
+    <key>name</key>
+    <string>128T Logs (Colorcode)</string>
+    <key>patterns</key>
+    <array>
+        <dict>
+            <key>captures</key>
+            <dict>
+                <key>1</key>
+                <dict>
+                    <key>name</key>
+                    <string>comment.name.section.date.log</string>
+                </dict>
+                <key>2</key>
+                <dict>
+                    <key>name</key>
+                    <string>entity.name.function.scope.log</string>
+                </dict>
+                <key>3</key>
+                <dict>
+                    <key>name</key>
+                    <string>entity.name.function.scope.log</string>
+                </dict>
+                <key>4</key>
+                <dict>
+                    <key>name</key>
+                    <string>comment.name.function.scope.log</string>
+                </dict>
+                <key>5</key>
+                <dict>
+                    <key>name</key>
+                    <string>entity.name.function.log</string>
+                </dict>
+                <key>6</key>
+                <dict>
+                    <key>name</key>
+                    <string>invalid.keyword.c++</string>
+                </dict>
+                <key>7</key>
+                <dict>
+                    <key>name</key>
+                    <string>variable.pid.log</string>
+                </dict>
+            </dict>
+            <key>match</key>
+            <string>^([a-zA-Z]{3}  ?[0-9]{1,2} [0-2][0-9]:[0-6][0-9]:[0-6][0-9]\.[0-9]+)\s+\[([A-Z]{2,5}) *\|(?:([a-zA-Z0-9]{2,4})|( -- )) *\]\s+(?:(TRACE|DEBUG|INFO|WARN)|(ERROR|FATAL))\s+\(([^\)]+)\)</string>
+        </dict>
+        <dict>
+            <key>captures</key>
+            <dict>
+                <key>1</key>
+                <dict>
+                    <key>name</key>
+                    <string>comment.name.section.date.log</string>
+                </dict>
+                <key>2</key>
+                <dict>
+                    <key>name</key>
+                    <string>entity.name.function.scope.log</string>
+                </dict>
+                <key>3</key>
+                <dict>
+                    <key>name</key>
+                    <string>entity.name.function.log</string>
+                </dict>
+                <key>4</key>
+                <dict>
+                    <key>name</key>
+                    <string>invalid.keyword.c++</string>
+                </dict>
+                <key>5</key>
+                <dict>
+                    <key>name</key>
+                    <string>variable.pid.log</string>
+                </dict>
+            </dict>
+            <key>match</key>
+            <string>^([a-zA-Z]{3}  ?[0-9]{1,2} [0-2][0-9]:[0-6][0-9]:[0-6][0-9]\.[0-9]+)\s+\[([A-Z]{2,5}) *\]\s+(?:(TRACE|DEBUG|INFO|WARN)|(ERROR|FATAL))\s+\(([0-9a-zA-Z\.-]+)\)</string>
+        </dict>
+        <dict>
+            <key>captures</key>
+            <dict>
+                <key>1</key>
+                <dict>
+                    <key>name</key>
+                    <string>string.quoted.other</string>
+                </dict>
+            </dict>
+            <key>match</key>
+            <string> \{([^\}]+)\}$</string>
+        </dict>
+        <dict>
+            <key>match</key>
+            <string>\+{70}$</string>
+            <key>name</key>
+            <string>string.gtest.log</string>
+        </dict>
+        <dict>
+            <key>match</key>
+            <string>-{70}$</string>
+            <key>name</key>
+            <string>string.gtest.log</string>
+        </dict>
+    </array>
+    <key>scopeName</key>
+    <string>source.log</string>
+</dict>
+</plist>
