@@ -2,6 +2,12 @@
 
 This plugin for Sublime Text 3 will color-highlight log files from 128 Technology routers.
 
+Before:
+![128T log file as plain text](https://cloud.githubusercontent.com/assets/3319094/20034510/aa763a28-a396-11e6-9c51-7ea28e8d3405.png)
+
+After:
+![128T Log Viewer](https://cloud.githubusercontent.com/assets/3319094/20034513/d46d6702-a396-11e6-9e89-52ed22b70e55.png)
+
 This plugin is very heavily based on the [Colorcoder plugin](https://github.com/vprimachenko/Sublime-Colorcoder) by Valerij Primachenko.
 
 ##Installation
