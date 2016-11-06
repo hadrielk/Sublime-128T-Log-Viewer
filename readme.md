@@ -16,14 +16,14 @@ Right now: Download the [zipped-file](https://github.com/hadrielk/Sublime-128T-L
 
 Eventually: Download the plugin via [packageControl](https://sublime.wbond.net/).
 
-To properly work 128T Log Viewer needs an appropriately modified color scheme. On the first run the plugin will try its best to automatically modify your current scheme. :grey_exclamation: the plugin will not actually modify the scheme but create a modified copy in a new directory called "128T-Log-Viewer" and apply it - note this directory is not the same as the ony you created if you installed manually using the zip file.
+To properly work 128T Log Viewer needs an appropriately modified color scheme. On the first run the plugin will try its best to automatically modify your current scheme. :grey_exclamation: The plugin will not actually modify the scheme but create a modified copy in a new directory called "128T-Log-Viewer" and apply it - note this directory is not the same as the one you created if you installed manually using the zip file.
 
 You can use `Tools`▶`Packages`▶`128T Log Viewer`▶` Tweak Log Viewer on current color scheme` (or <kbd>CTRL</kbd><kbd>SHIFT</kbd><kbd>P</kbd> it) to modify the colors a bit (you can change the lightness and saturation).
 
 
 ##Uninstalling
 
-Uninstalling will cause Sublime Text to generate an error about a missing color scheme file. That's because your User settings for Sublime Text have been changed to use the 128T Log Viewer's color scheme instead of you original. So go to `Sublime Text`▶`Preferences`▶`Settings`, and in the User ones remove or comment out the "color_scheme" setting line. Your original color scheme should in that User settings under "original_color_scheme" - you can change the name of this to "color_scheme" and everything should be right as rain.
+Uninstalling will cause Sublime Text to generate an error about a missing color scheme file. That's because your general `User` settings for Sublime Text have been changed to use the 128T Log Viewer's color scheme instead of your original. So go to `Sublime Text`▶`Preferences`▶`Settings`, and in the `User` settings remove or comment out the "color_scheme" setting line. Your original color scheme should also be in that `User` settings under "original_color_scheme" - you can change the name of this to "color_scheme" and everything should be right as rain.
 
 
 ##Options
