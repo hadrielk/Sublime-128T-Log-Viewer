@@ -156,9 +156,9 @@ class colorcodertoggler(sublime_plugin.ApplicationCommand):
 
     def description(self):
         if sublime.active_window().active_view().size() > sublime.load_settings("128t_log_viewer.sublime-settings").get('max_size'):
-            return "Colorcoding may hurt performance, File is large"
+            return "128T Log Viewer colorizing may hurt performance, File is large"
         else:
-            return "Colorcode this view"
+            return "128T Log Viewer colorize this view"
 
 modification_running = False
 
